@@ -1,4 +1,0 @@
-prathinavelu.github.io
-======================
-
-blog
