@@ -206,7 +206,7 @@ d3.csv("/assets/bysleepdata.csv", function(error, data) {
       .call(yAxis)
       .append("text")
       .attr("transform", "rotate(-90)")
-      .attr("y", 100)
+      .attr("y", 20)
       .attr("dy", ".75em")
       .style("text-anchor", "end")
       //.text("% of People");
@@ -246,7 +246,7 @@ d3.csv("/assets/bysleepdata.csv", function(error, data) {
     
   svg.append("g")
       .attr("class","legend")
-      .attr("transform","translate(8000,20)")
+      .attr("transform","translate(800,20)")
       .style("font-size","10px")
       //.style("opacity", .4)
       .call(d3.legend)
