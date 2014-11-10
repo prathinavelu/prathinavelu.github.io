@@ -4,7 +4,7 @@
   <title><![CDATA[Praveen Rathinavelu]]></title>
   <link href="http://prathinavelu.github.io/atom.xml" rel="self"/>
   <link href="http://prathinavelu.github.io/"/>
-  <updated>2014-11-10T17:24:29-05:00</updated>
+  <updated>2014-11-10T17:26:23-05:00</updated>
   <id>http://prathinavelu.github.io/</id>
   <author>
     <name><![CDATA[Praveen Rathinavelu]]></name>
@@ -18,19 +18,43 @@
     <link href="http://prathinavelu.github.io/blog/2014/10/10/classifying-individuals-by-heart-health/"/>
     <updated>2014-10-10T18:13:06-04:00</updated>
     <id>http://prathinavelu.github.io/blog/2014/10/10/classifying-individuals-by-heart-health</id>
-    <content type="html"><![CDATA[<p>&lt;!DOCTYPE html>
-<meta charset="utf-8"></p>
+    <content type="html"><![CDATA[<div>
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+body {
+  font: 11px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2.5px;
+}
+
+.legend rect {
+  fill:white;
+  stroke:black;
+  opacity:1;
+}
 
 
-
-<p><body></p>
-
+</style>
+<body>
 <script src="http://d3js.org/d3.v3.js"></script>
-
-
 <script src="http://prathinavelu.github.io/assets/d3.legend.js"></script>
-
-
 <script>
 
 var margin = {top: 30, right: 150, bottom: 70, left: 75},
@@ -162,6 +186,7 @@ d3.csv("/assets/bysleepdata.csv", function(error, data) {
 });
 
 </script>
+</div>
 
 ]]></content>
   </entry>
