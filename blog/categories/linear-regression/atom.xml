@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Praveen Rathinavelu]]></title>
-  <link href="http://prathinavelu.github.io/atom.xml" rel="self"/>
+  <title><![CDATA[Category: linear regression | Praveen Rathinavelu]]></title>
+  <link href="http://prathinavelu.github.io/blog/categories/linear-regression/atom.xml" rel="self"/>
   <link href="http://prathinavelu.github.io/"/>
   <updated>2014-11-10T14:55:19-05:00</updated>
   <id>http://prathinavelu.github.io/</id>
