@@ -4,7 +4,7 @@
   <title><![CDATA[Category: naive bayes | Praveen Rathinavelu]]></title>
   <link href="http://prathinavelu.github.io/blog/categories/naive-bayes/atom.xml" rel="self"/>
   <link href="http://prathinavelu.github.io/"/>
-  <updated>2014-11-10T17:46:29-05:00</updated>
+  <updated>2014-11-10T17:48:14-05:00</updated>
   <id>http://prathinavelu.github.io/</id>
   <author>
     <name><![CDATA[Praveen Rathinavelu]]></name>
@@ -180,7 +180,7 @@ d3.csv("/assets/bysleepdata.csv", function(error, data) {
     
   svg.append("g")
       .attr("class","legend")
-      .attr("transform","translate(800,20)")
+      .attr("transform","translate(600,20)")
       .style("font-size","10px")
       //.style("opacity", .4)
       .call(d3.legend)
