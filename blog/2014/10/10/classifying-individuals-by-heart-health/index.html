@@ -124,8 +124,8 @@ body {
 <script>
 
 var margin = {top: 30, right: 150, bottom: 70, left: 75},
-    width = 100 - margin.left - margin.right,
-    height = 50 - margin.top - margin.bottom;
+    width = 1000 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
 
 
 var x = d3.scale.linear()
@@ -189,9 +189,9 @@ d3.csv("/assets/bysleepdata.csv", function(error, data) {
       .attr("transform", "translate(0," + height + ")")
       .call(xAxis)
       .append("text")
-      .style("font-size", "16px")
+      .style("font-size", "10px")
       .attr("dy", "3em")
-      .attr("x", 550)
+      .attr("x", 250)
       .text("Number of Hours of Sleep Per Night");
       
       
