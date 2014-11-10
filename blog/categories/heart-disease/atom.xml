@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: metis dsbc | Praveen Rathinavelu]]></title>
-  <link href="http://prathinavelu.github.io/blog/categories/metis-dsbc/atom.xml" rel="self"/>
+  <title><![CDATA[Category: heart disease | Praveen Rathinavelu]]></title>
+  <link href="http://prathinavelu.github.io/blog/categories/heart-disease/atom.xml" rel="self"/>
   <link href="http://prathinavelu.github.io/"/>
   <updated>2014-11-10T17:24:29-05:00</updated>
   <id>http://prathinavelu.github.io/</id>
@@ -163,20 +163,6 @@ d3.csv("/assets/bysleepdata.csv", function(error, data) {
 
 </script>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Predicting Box Office Gross for Movie Remakes]]></title>
-    <link href="http://prathinavelu.github.io/blog/2014/09/22/predicting-box-office-gross-for-movie-remakes/"/>
-    <updated>2014-09-22T15:38:47-04:00</updated>
-    <id>http://prathinavelu.github.io/blog/2014/09/22/predicting-box-office-gross-for-movie-remakes</id>
-    <content type="html"><![CDATA[<p>This is a test!</p>
-
-<!-- more -->
-
-
-<p>And another test!!</p>
 ]]></content>
   </entry>
   
