@@ -4,7 +4,7 @@
   <title><![CDATA[Praveen Rathinavelu]]></title>
   <link href="http://prathinavelu.github.io/atom.xml" rel="self"/>
   <link href="http://prathinavelu.github.io/"/>
-  <updated>2014-11-10T16:29:11-05:00</updated>
+  <updated>2014-11-10T16:31:14-05:00</updated>
   <id>http://prathinavelu.github.io/</id>
   <author>
     <name><![CDATA[Praveen Rathinavelu]]></name>
@@ -18,13 +18,7 @@
     <link href="http://prathinavelu.github.io/blog/2014/09/22/predicting-box-office-gross-for-movie-remakes/"/>
     <updated>2014-09-22T15:38:47-04:00</updated>
     <id>http://prathinavelu.github.io/blog/2014/09/22/predicting-box-office-gross-for-movie-remakes</id>
-    <content type="html"><![CDATA[<h1>This</h1>
-
-<h2>is</h2>
-
-<h3>a</h3>
-
-<h4>Test</h4>
+    <content type="html"><![CDATA[<p>This is a test.t</p>
 ]]></content>
   </entry>
   
