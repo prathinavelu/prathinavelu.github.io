@@ -4,7 +4,7 @@
   <title><![CDATA[Category: logistic regression | Praveen Rathinavelu]]></title>
   <link href="http://prathinavelu.github.io/blog/categories/logistic-regression/atom.xml" rel="self"/>
   <link href="http://prathinavelu.github.io/"/>
-  <updated>2014-11-10T17:34:55-05:00</updated>
+  <updated>2014-11-10T17:38:03-05:00</updated>
   <id>http://prathinavelu.github.io/</id>
   <author>
     <name><![CDATA[Praveen Rathinavelu]]></name>
@@ -19,40 +19,40 @@
     <updated>2014-10-10T18:13:06-04:00</updated>
     <id>http://prathinavelu.github.io/blog/2014/10/10/classifying-individuals-by-heart-health</id>
     <content type="html"><![CDATA[<div>
-<!DOCTYPE html>
-<meta charset="utf-8">
-<style>
+#<!DOCTYPE html>
+#<meta charset="utf-8">
+#<style>
 
-body {
-  font: 11px sans-serif;
-}
+#body {
+#  font: 11px sans-serif;
+#}
 
-.axis path,
-.axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
-}
+#.axis path,
+#.axis line {
+#  fill: none;
+#  stroke: #000;
+#  shape-rendering: crispEdges;
+#}
 
-.x.axis path {
-  display: none;
-}
+#.x.axis path {
+#  display: none;
+#}
 
-.line {
-  fill: none;
-  stroke: steelblue;
-  stroke-width: 2.5px;
-}
+#.line {
+#  fill: none;
+#  stroke: steelblue;
+#  stroke-width: 2.5px;
+#}
 
-.legend rect {
-  fill:white;
-  stroke:black;
-  opacity:1;
-}
+#.legend rect {
+#  fill:white;
+#  stroke:black;
+#  opacity:1;
+#}
 
 
-</style>
-<body>
+#</style>
+#<body>
 <script src="http://d3js.org/d3.v3.js"></script>
 <script src="http://prathinavelu.github.io/assets/d3.legend.js"></script>
 <script>
