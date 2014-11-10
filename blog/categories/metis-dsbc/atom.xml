@@ -4,7 +4,7 @@
   <title><![CDATA[Category: metis dsbc | Praveen Rathinavelu]]></title>
   <link href="http://prathinavelu.github.io/blog/categories/metis-dsbc/atom.xml" rel="self"/>
   <link href="http://prathinavelu.github.io/"/>
-  <updated>2014-11-10T17:38:03-05:00</updated>
+  <updated>2014-11-10T17:39:49-05:00</updated>
   <id>http://prathinavelu.github.io/</id>
   <author>
     <name><![CDATA[Praveen Rathinavelu]]></name>
@@ -18,7 +18,12 @@
     <link href="http://prathinavelu.github.io/blog/2014/10/10/classifying-individuals-by-heart-health/"/>
     <updated>2014-10-10T18:13:06-04:00</updated>
     <id>http://prathinavelu.github.io/blog/2014/10/10/classifying-individuals-by-heart-health</id>
-    <content type="html"><![CDATA[<div>
+    <content type="html"><![CDATA[<!-- more -->
+
+
+
+
+<div>
 #<!DOCTYPE html>
 #<meta charset="utf-8">
 #<style>
