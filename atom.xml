@@ -4,7 +4,7 @@
   <title><![CDATA[Praveen Rathinavelu]]></title>
   <link href="http://prathinavelu.github.io/atom.xml" rel="self"/>
   <link href="http://prathinavelu.github.io/"/>
-  <updated>2014-11-12T14:39:27-05:00</updated>
+  <updated>2014-11-12T14:44:19-05:00</updated>
   <id>http://prathinavelu.github.io/</id>
   <author>
     <name><![CDATA[Praveen Rathinavelu]]></name>
@@ -58,7 +58,7 @@
 
 </style>
 <body>
-<script src="http://prathinavelu.github.io/assets/d3.v3.js"></script>
+<script src="http://prathinavelu.github.io/assets/d3.js"></script>
 <script src="http://prathinavelu.github.io/assets/d3.legend.js"></script>
 <script>
 
