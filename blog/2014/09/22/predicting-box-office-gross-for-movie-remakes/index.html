@@ -7,7 +7,7 @@
 	<meta name="author" content="Praveen Rathinavelu">
 
 	
-	<meta name="description" content="This is a test! And another test!! beautifulsoup, linear regression, metis dsbc, movies, web scraping ">
+	<meta name="description" content="There is a general position that the film industry is increasingly built around sequels and remakes because they minimize risk. By basing a movie off &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -84,12 +84,72 @@
 	
 	<div id="content" class="inner"><article class="post">
 	<h2 class="title">Predicting Box Office Gross for Movie Remakes</h2>
-	<div class="entry-content"><p>This is a test!</p>
+	<div class="entry-content"><p>There is a general position that the film industry is increasingly built around sequels and remakes because they minimize risk. By basing a movie off an earlier one, we can use prior performance to constrain our uncertainty in predicting box office performance. I decided to focus on remakes, because they do not have many of the features that make sequels a relatively safe bet (they generally do not bring back the same actors or director, and are often produced decades apart). I wanted to see if, using the original version&rsquo;s performance, one could build a model that predicts the box office gross of the remake.</p>
 
 <!-- more -->
 
 
-<p>And another test!!</p>
+<h1>Getting the Data</h1>
+
+<p>In order to get my list of remakes, I used Beautiful Soup, a Python package that is great for parsing HTML documents. The package helped me scrape Wikipedia&rsquo;s list of film remakes, as well as search IMDb for movies with the remake keyword (I used both foreign and domestic remakes, but only looked at domestic gross). Once I had my full movie list, I wrote a similar scraper that searched IMDb for basic features (including budget, gross, language, and runtime) of both the original movie and its remake.</p>
+
+<h1>Throat-clearing</h1>
+
+<p>I based my approach around the idea that, if the original drives the performance of the remake, it&rsquo;s either because:</p>
+
+<ul>
+<li>there is something inherent in both versions (story, genre, etc.) that has a relationship to performance</li>
+<li>the original&rsquo;s cultural presence boosts the appeal/value of the remake</li>
+</ul>
+
+
+<p>After adjusting for inflation, I looked to see if there was an obvious shape to the relationship between the box office gross of the original (its lifetime gross, according to IMDb) and remake. Not really:</p>
+
+<p><img src="/images/luther/luther1.png"></p>
+
+<p>We see that a high-grossing original doesn&rsquo;t necessarily guarantee a high gross for its remake. This becomes clearer when we look at the five original-remake pairs with the highest grossing originals (again, we are using the best available estimate of inflation-adjusted lifetime gross):</p>
+
+<p><img src="/images/luther/luther2.png"></p>
+
+<p>Since we can&rsquo;t rely on the original gross alone, I decided to see how the time between the release of the remake and original affected the remake&rsquo;s gross:</p>
+
+<p><img src="/images/luther/luther3.png"></p>
+
+<p>Here we see an almost-periodic relationship, with three discernible groups, whose characteristics become clearer when we look at specific data points:</p>
+
+<ul>
+<li>The first group is the smallest: remakes that were released 50+ years after the original. These are movies like <em>King Kong</em> and the <em>Jazz Singer</em> that have an enduring enough cultural presence, regardless of whether the new audience had seen the original.</li>
+<li>The second group has the majority of successful remakes, with releases between 20 and 50 years after the original. These movies seem to have the benefit of being in the cultural memory, but are old enough that they could recapture a lot of the value from first-time and unfamiliar audiences. Good examples in this group include <em>Ocean&rsquo;s Eleven</em> and <em>Planet of the Apes</em>.</li>
+<li>The third group is the most interesting: remakes released less than 20 years after the original. Once I incorporated additional features into the dataset, it became clear that these were primarily foreign movies remade domestically, shortly after. We can see this detailed in the figure below.</li>
+</ul>
+
+
+<p><img src="/images/luther/luther4.png"></p>
+
+<p>The most successful example is <em>3 Men and a Baby</em>, which was released a year after the french movie, <em>3 hommes et un couffin</em>.</p>
+
+<h1>Building a Model</h1>
+
+<p>After the initial exploratory analysis, I wanted to see what kind of linear regression model we could build with the features at hand:</p>
+
+<ul>
+<li>The gross of the original (I tested models with inflation-adjusted and nominal values for gross) as well as log_original_gross</li>
+<li>The region of origin of the original (with dummy variables for US, Asian, and European)</li>
+<li>A dummy variable indicating a color change between the original and remake.</li>
+<li>The year of the original release</li>
+<li>The runtime of the remake</li>
+<li>The month of the remake</li>
+<li>The years between releases (I actually tested 7 variables of the form yearsbetween<sup>n</sup>, for n up to 7, in order to model the non-linear relationship between yearsbetween and gross).</li>
+</ul>
+
+
+<p>Using the scikit-learn python package, I iterated through each combination of these features and ran a linear regression model. The models used ridge regularization in order to add a penalty for too many variables, which would create overfitting. First, I found the combinations of variables that produced models with the highest r-squared (the amount of variance in remake gross that can be explained by the model). However, what is considered a good r-squared varies depending on the type of data we are trying to model.</p>
+
+<p>A more useful measure of accuracy is the standard error of the model, which will show on average, how far the prediction deviates from the actual gross. To calculate this, I also used cross-validation, which tests the model on many samples within the data (again, to avoid overfitting to a particular training set) and then averages the model&rsquo;s error across the samples.</p>
+
+<p> Through cross-validation and ridge regularization, the best regression model had a standard error of roughly $44.35 million dollars. At easy way of interpreting this is that we have 95% confidence in our model&rsquo;s prediction +/- $88.7 million.</p>
+
+<p>In the future, I hope to augment this model by incorporating more features that indicate the cultural presence of the original movie. The first place I would look is IMDb&rsquo;s connections section, which talks about how many times a movie is referenced/mentioned/parodied in popular culture.</p>
 </div>
 
 
@@ -110,7 +170,7 @@
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/beautifulsoup/'>beautifulsoup</a>, <a class='category' href='/blog/categories/linear-regression/'>linear regression</a>, <a class='category' href='/blog/categories/metis-dsbc/'>metis dsbc</a>, <a class='category' href='/blog/categories/movies/'>movies</a>, <a class='category' href='/blog/categories/web-scraping/'>web scraping</a>
+	<a class='category' href='/blog/categories/beautifulsoup/'>beautifulsoup</a>, <a class='category' href='/blog/categories/linear-regression/'>linear regression</a>, <a class='category' href='/blog/categories/metis-dsbc/'>metis dsbc</a>, <a class='category' href='/blog/categories/movies/'>movies</a>, <a class='category' href='/blog/categories/ridge-regularization/'>ridge regularization</a>, <a class='category' href='/blog/categories/scikit-learn/'>scikit-learn</a>, <a class='category' href='/blog/categories/web-scraping/'>web scraping</a>
 
 
 </div>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: beautifulsoup | Praveen Rathinavelu]]></title>
-  <link href="http://prathinavelu.github.io/blog/categories/beautifulsoup/atom.xml" rel="self"/>
+  <title><![CDATA[Category: scikit-learn | Praveen Rathinavelu]]></title>
+  <link href="http://prathinavelu.github.io/blog/categories/scikit-learn/atom.xml" rel="self"/>
   <link href="http://prathinavelu.github.io/"/>
   <updated>2014-11-13T14:25:13-05:00</updated>
   <id>http://prathinavelu.github.io/</id>
