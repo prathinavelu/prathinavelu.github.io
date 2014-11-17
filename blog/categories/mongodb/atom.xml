@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: metis | Praveen Rathinavelu]]></title>
-  <link href="http://prathinavelu.github.io/blog/categories/metis/atom.xml" rel="self"/>
+  <title><![CDATA[Category: mongodb | Praveen Rathinavelu]]></title>
+  <link href="http://prathinavelu.github.io/blog/categories/mongodb/atom.xml" rel="self"/>
   <link href="http://prathinavelu.github.io/"/>
   <updated>2014-11-17T14:38:22-05:00</updated>
   <id>http://prathinavelu.github.io/</id>
@@ -252,17 +252,6 @@ d3.select(self.frameElement).style("height", height + "px");
 <h1>Conclusion</h1>
 
 <p>The clustering approach helped us recognize clear and interesting patterns within congress, using only the content of their tweets. I would be interested in further exploring some of the characteristics of each of these groups. I already mentioned looking at where the clusters sit on the ideological and leadership spectrums, using govtrack.us. I began using NLTK and TextBlob for some sentiment analysis, but when the sentiment is averaged over each cluster, there are no clear patterns of polarity or subjectivity. It would be interesting to try other ways of detecting bias within these groups.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Bright Lights, (not entirely) Big Data]]></title>
-    <link href="http://prathinavelu.github.io/blog/2014/09/20/bright-lights/"/>
-    <updated>2014-09-20T16:12:40-04:00</updated>
-    <id>http://prathinavelu.github.io/blog/2014/09/20/bright-lights</id>
-    <content type="html"><![CDATA[<p>I&rsquo;ve always been interested in how we use narrative to help us cope with and understand the complex, messy systems around us. One of the most exciting things about joining the data science bootcamp at <a href="http://www.thisismetis.com/data-science">Metis</a> has been learning how to leverage computational tools into finding narrative threads within data, that would otherwise be impossible to see.</p>
-
-<p>I&rsquo;m hoping this blog will detail some of these data stories&mdash;from both in and out of Metis. Eventually, I might put up some short fiction too.</p>
 ]]></content>
   </entry>
   

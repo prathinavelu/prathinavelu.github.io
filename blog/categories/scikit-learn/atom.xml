@@ -4,7 +4,7 @@
   <title><![CDATA[Category: scikit-learn | Praveen Rathinavelu]]></title>
   <link href="http://prathinavelu.github.io/blog/categories/scikit-learn/atom.xml" rel="self"/>
   <link href="http://prathinavelu.github.io/"/>
-  <updated>2014-11-17T08:07:48-05:00</updated>
+  <updated>2014-11-17T14:38:22-05:00</updated>
   <id>http://prathinavelu.github.io/</id>
   <author>
     <name><![CDATA[Praveen Rathinavelu]]></name>
@@ -12,6 +12,248 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Clustering Congress Through Twitter]]></title>
+    <link href="http://prathinavelu.github.io/blog/2014/11/03/clustering-congress-through-twitter/"/>
+    <updated>2014-11-03T08:09:56-05:00</updated>
+    <id>http://prathinavelu.github.io/blog/2014/11/03/clustering-congress-through-twitter</id>
+    <content type="html"><![CDATA[<p>Twitter offers a really unique opportunity for politicians to have direct and unmediated communication with their constituents. In a media landscape that has its own motivations in determining what topics to focus on, twitter should, <em>in theory</em>, give politicians the chance to emphasize their own topics and determine their own tone. I became interested in looking at how we could cluster members of congress based on how they tweet.</p>
+
+<!-- more -->
+
+
+<h1>Getting the Tweets</h1>
+
+<p>I started with CSPAN&rsquo;s <a href="https://twitter.com/cspan/lists/members-of-congress/members">list</a> of members of congress on twitter, filtering out the accounts for congressional committees. Using twitter&rsquo;s API, I took the last 3000 tweets of each member&rsquo;s account and merged the tweets into one text document per congressman, storing them using MongoDB.</p>
+
+<h1>Clustering Methodology</h1>
+
+<p>Once I had my corpus (the full collection of members&#8217; documents), I used a TFID-Vectorizer to transform the text into a form we could cluster. The vectorizer creates a <a href="http://en.wikipedia.org/wiki/Tf%E2%80%93idf">tf-idf</a> value for each word in the corpus (after eliminating a list of stop words including common twitter terms like &ldquo;RT&rdquo; and &ldquo;icymi&rdquo;). It then creates a vector for each member of congress, which I used a K-means++ algorithm to cluster. I tested different parameters for my vectorizer, but found that it worked best if I included terms in at least 30% of members&#8217; documents and in no more than 70%. This eliminates geographically specific terms (state and city names) as well terms that are extremely common (like &ldquo;watch&rdquo;, &ldquo;live&rdquo;, and &ldquo;event&rdquo;). Setting these parameters allowed me to find terms that distinguished clusters in a meaningful way.</p>
+
+<p>Note: I also attempted DBSCAN and Hierarchical clustering methods, but K-means yielded clusters that grouped congress in the most useful and interesting ways, as we&rsquo;ll see below.</p>
+
+<h1>Cluster Results</h1>
+
+<p>In analyzing the clusters, my primary question was how much party affiliation impacts a politician&rsquo;s tweets. By clustering based on top tf-idf words, we see extremely clear boundaries along party lines:</p>
+
+<p><img src="/images/fletcher/fletcher1.png"></p>
+
+<p>We see that we have clusters at either extreme, that are largely homogenous in terms of political party. In the center, we have two clusters that are divided between parties. I found 4 to be my ideal number of clusters, because as I incresed my number, it still preserved the same two clusters at each extreme and simply further segemented those closer to the center (without adding notable new information about the smaller groups). I kept 4 instead of 3 clusters because as we will see, there are meaningful distinctions between the two in the center.</p>
+
+<p>In order to understand what each cluster of congressmen were tweeting about, I looked at the centroid of each group and took the top terms (again in terms of tf-idf) at those center points:</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Cluster </th>
+<th style="text-align:center;"> Top Terms</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;"><strong>Cluster 0 (Republican)</strong>    </td>
+<td style="text-align:center;"> obamacare bills energy budget tax rep va border video </td>
+</tr>
+<tr>
+<td style="text-align:left;"><strong>Cluster 1 (General)</strong>    </td>
+<td style="text-align:center;"> va rep county bipartisan town statement staff committee hall </td>
+</tr>
+<tr>
+<td style="text-align:left;"><strong>Cluster 2 (Current Events/Reactionary)</strong>    </td>
+<td style="text-align:center;"> isis ebola tune border war threat talking pres ll </td>
+</tr>
+<tr>
+<td style="text-align:left;"><strong>Cluster 3 (Democrat)</strong>    </td>
+<td style="text-align:center;"> gop pass workers violence agree rights pay education access </td>
+</tr>
+</tbody>
+</table>
+
+
+<p>There are a few things to note here. First, that congressmen tend to mention the opposing party more than their own (with the republican cluster referring to obamacare frequently and the democrat cluster using gop as their top term). The terms in clusters 0 and 3 fit the general policy focus of each party very well (note that &ldquo;va&rdquo; is veteran affairs and &ldquo;ll&rdquo; is from references to 9/11). In the center, members of Cluster 1 tend to tweet about general events and procedural matters, with no truly distinguishing terms (again reflected in the party distribution of the cluster). Cluster 2 is more interesting, with terms that seem to be reactions to the most extreme and polarizing current events.</p>
+
+<h1>Analyzing the Members</h1>
+
+<p>Another way of looking at how we divide the clusters is by the profile of its members. For each group, I looked at the 5 members closest to its center (the most represenative of the average member within each group):</p>
+
+<p><img src="/images/fletcher/fletcher2.png"></p>
+
+<p>The most interesting thing to note here is that in the democrat cluster, four out of the five members closest to the center are women (as well as four out of the five being from California). And despite being mixed overall, the members closest to the center of cluster 2 are all republican. I did informally use <a href="https://www.govtrack.us/congress/members">govtrack.us</a> to look at where each of these members are situated in terms of influence within their parties. At this time, there aren&rsquo;t any clear patterns between their place within party leadership and how close to they are to the center of the cluster. I would like to look at this more rigorously in the future.</p>
+
+<h1>Visualizing the Clusters</h1>
+
+<p>This d3 visualization shows how the clusters are distributed geographically:</p>
+
+<div>
+<style>
+
+.counties {
+  fill: none;
+}
+
+.states {
+  fill: none;
+  stroke: #fff;
+  stroke-linejoin: round;
+}
+
+.q0-9 { fill:rgb(247,251,255); }
+.q1-9 { fill:rgb(222,235,247); }
+.q2-9 { fill:rgb(198,219,239); }
+.q3-9 { fill:rgb(158,202,225); }
+.q4-9 { fill:rgb(107,174,214); }
+.q5-9 { fill:rgb(66,146,198); }
+.q6-9 { fill:rgb(33,113,181); }
+.q7-9 { fill:rgb(8,81,156); }
+.q8-9 { fill:rgb(8,48,107); }
+
+</style>
+</div>
+
+
+<p><body></p>
+
+<div id="buttons">
+<button id="cluster0">Cluster 0</button>
+<button id="cluster1">Cluster 1</button>
+<button id="cluster2">Cluster 2</button>
+<button id="cluster3">Cluster 3</button>
+</div>
+
+
+
+
+<script src=/assets/d3.js></script>
+
+
+<script src=/assets/queue.v1.min.js></script>
+
+
+<script src=/assets/topojson.v1.min.js></script>
+
+
+<script>
+
+var width = 960,
+    height = 600;
+
+var rateById = d3.map();
+
+
+var quantize = d3.scale.quantize()
+    .domain([0, 6])
+    .range(d3.range(9).map(function(i) { return "q" + i + "-9"; }));
+
+var projection = d3.geo.albersUsa()
+    .scale(1280)
+    .translate([width / 2, height / 2]);
+
+var path = d3.geo.path()
+    .projection(projection);
+
+var svg = d3.select(".entry-content").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+var txt = "Cluster 0"
+;
+queue()
+ .defer(d3.json, "/assets/fletcher/us.json")
+ .defer(d3.csv, "/assets/fletcher/Cluster0States.csv", function(d) {rateById.set(d.id, d.rate_adjusted); })
+ .await(ready);
+
+svg.append("text")
+    .attr("x", 425)
+    .attr("y", 20)
+    .attr("dy", ".35em")
+    .text(txt);
+
+d3.select("#cluster0")
+    .on("click", function(d,i) {
+      rateById.forEach(function(key) { rateById.remove(key); });
+      txt = "Cluster 0";
+      queue()
+        .defer(d3.json, "/assets/fletcher/us.json")
+        .defer(d3.csv, "/assets/fletcher/Cluster0States.csv", function(d) {rateById.set(d.id, d.rate_adjusted); })
+        .await(ready);
+    })
+
+d3.select("#cluster1")
+    .on("click", function(d,i) {
+        rateById.forEach(function(key) { rateById.remove(key); });
+        txt = "Cluster 1";
+        queue()
+        .defer(d3.json, "/assets/fletcher/us.json")
+        .defer(d3.csv, "/assets/fletcher/Cluster1States.csv", function(d) {rateById.set(d.id, d.rate_adjusted); })
+        .await(ready);
+    })
+    
+d3.select("#cluster2")
+    .on("click", function(d,i) {
+        rateById.forEach(function(key) { rateById.remove(key); });
+        txt = "Cluster 2"
+    queue()
+        .defer(d3.json, "/assets/fletcher/us.json")
+        .defer(d3.csv, "/assets/fletcher/Cluster2States.csv", function(d) {rateById.set(d.id, d.rate_adjusted); })
+        .await(ready);
+    })
+    
+d3.select("#cluster3")
+    .on("click", function(d,i) {
+        rateById.forEach(function(key) { rateById.remove(key); });      
+        txt = "Cluster 3";
+    queue()
+        .defer(d3.json, "/assets/fletcher/us.json")
+        .defer(d3.csv, "/assets/fletcher/Cluster3States.csv", function(d) {rateById.set(d.id, d.rate_adjusted); })
+        .await(ready);
+    })
+    
+
+function ready(error, us) {
+  svg.selectAll("path").remove();
+  svg.selectAll("text").remove();
+  svg.append("g")
+      .attr("class", "states")
+      .selectAll("path")
+      .data(topojson.feature(us, us.objects.states).features)
+      .enter().append("path")
+      .attr("class", function(d) {console.log(rateById.get(d.id)); return quantize(rateById.get(d.id)); })
+      .attr("d", path);
+
+  svg.append("path")
+      .datum(topojson.mesh(us, us.objects.states, function(a, b) {console.log(txt); return a !== b; }))
+      .attr("class", "states")
+      .attr("d", path);
+  
+  svg.append("text")
+    .attr("x", 425)
+    .attr("y", 20)
+    .attr("dy", ".35em")
+    .text(txt);
+
+}
+
+d3.select(self.frameElement).style("height", height + "px");
+
+</script>
+
+
+<p>The states are shaded by what percentage of each cluster is in that state. They are also scaled by the overall percentage of congressmen from that state (so that we don&rsquo;t have states with lots of members of congress over-represented in the maps, such as California).</p>
+
+<p>It is tricky to visualizes the shape/distribution of the clusters themselves, since each point is represented by a vector in a n-dimensional space (in our case n is 2000, the number of term features our vectorizer uses). However, using principal component analysis, we can reduce an n-dimensional space to 2 dimensions, in order to visualize it:</p>
+
+<p><img src="/images/fletcher/fletcher3.png"></p>
+
+<p>We see that even after losing some information by reducing to two dimensions, the basic structure of clusters is preserved, with two homogenous party clusters at either end merging into a more mixed center. It is useful to visualize the clsters in this way to see how clearly the content of congressional tweets is function of political party. We also see that democrats are slightly more densely clustered, indicating more consistency/uniformity throughout the party.</p>
+
+<p>This image also shows that the methodology would work as a strong party classifier, given the fairly well-defined boundary lines.</p>
+
+<h1>Conclusion</h1>
+
+<p>The clustering approach helped us recognize clear and interesting patterns within congress, using only the content of their tweets. I would be interested in further exploring some of the characteristics of each of these groups. I already mentioned looking at where the clusters sit on the ideological and leadership spectrums, using govtrack.us. I began using NLTK and TextBlob for some sentiment analysis, but when the sentiment is averaged over each cluster, there are no clear patterns of polarity or subjectivity. It would be interesting to try other ways of detecting bias within these groups.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Predicting Box Office Gross for Movie Remakes]]></title>
