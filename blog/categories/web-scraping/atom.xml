@@ -4,7 +4,7 @@
   <title><![CDATA[Category: web scraping | Praveen Rathinavelu]]></title>
   <link href="http://prathinavelu.github.io/blog/categories/web-scraping/atom.xml" rel="self"/>
   <link href="http://prathinavelu.github.io/"/>
-  <updated>2014-11-13T14:25:13-05:00</updated>
+  <updated>2014-11-17T07:57:21-05:00</updated>
   <id>http://prathinavelu.github.io/</id>
   <author>
     <name><![CDATA[Praveen Rathinavelu]]></name>
@@ -25,7 +25,7 @@
 
 <h1>Getting the Data</h1>
 
-<p>In order to get my list of remakes, I used Beautiful Soup, a Python package that is great for parsing HTML documents. The package helped me scrape Wikipedia&rsquo;s list of film remakes, as well as search IMDb for movies with the remake keyword (I used both foreign and domestic remakes, but only looked at domestic gross). Once I had my full movie list, I wrote a similar scraper that searched IMDb for basic features (including budget, gross, language, and runtime) of both the original movie and its remake.</p>
+<p>In order to get my list of remakes, I used the Beautiful Soup package to scrape Wikipedia&rsquo;s list of film remakes, as well as search IMDb for movies with the remake keyword (I used both foreign and domestic remakes, but only looked at domestic gross). Once I had my full movie list, I wrote a similar scraper that searched IMDb for basic features (including budget, gross, language, and runtime) of both the original movie and its remake. Because I wanted to have enough information about the original&rsquo;s cultural presence, I wanted to use cumulative lifetime gross, which was not always the box-office gross listed on a movie&rsquo;s frontpage.</p>
 
 <h1>Throat-clearing</h1>
 
@@ -64,26 +64,31 @@
 
 <h1>Building a Model</h1>
 
-<p>After the initial exploratory analysis, I wanted to see what kind of linear regression model we could build with the features at hand:</p>
+<p>After the initial exploratory analysis, I wanted to see what kind of linear regression model we could build with the features at hand.</p>
 
-<ul>
-<li>The gross of the original (I tested models with inflation-adjusted and nominal values for gross) as well as log_original_gross</li>
-<li>The region of origin of the original (with dummy variables for US, Asian, and European)</li>
-<li>A dummy variable indicating a color change between the original and remake.</li>
-<li>The year of the original release</li>
-<li>The runtime of the remake</li>
-<li>The month of the remake</li>
-<li>The years between releases (I actually tested 7 variables of the form yearsbetween<sup>n</sup>, for n up to 7, in order to model the non-linear relationship between yearsbetween and gross).</li>
-</ul>
+<h1>* The gross of the original (I tested models with inflation-adjusted and nominal values for gross) as well as log_original_gross</h1>
 
+<h1>* The region of origin of the original (with dummy variables for US, Asian, and European)</h1>
 
-<p>Using the scikit-learn python package, I iterated through each combination of these features and ran a linear regression model. The models used ridge regularization in order to add a penalty for too many variables, which would create overfitting. First, I found the combinations of variables that produced models with the highest r-squared (the amount of variance in remake gross that can be explained by the model). However, what is considered a good r-squared varies depending on the type of data we are trying to model.</p>
+<h1>* A dummy variable indicating a color change between the original and remake.</h1>
+
+<h1>* The year of the original release</h1>
+
+<h1>* The runtime of the remake</h1>
+
+<h1>* The month of the remake</h1>
+
+<h1>* The years between releases (I actually tested 7 variables of the form yearsbetween<sup>n</sup>, for n up to 7, in order to model the non-linear relationship between yearsbetw</h1>
+
+<p>Using the scikit-learn python package, I iterated through each combination of features and ran a linear regression model. The models used ridge regularization in order to add a penalty for too many variables, which would create overfitting. I initially looked at the r-squared for models with each combination of features for some basic intuition, however, what is considered a good r-squared varies depending on the type of data we are trying to model.</p>
 
 <p>A more useful measure of accuracy is the standard error of the model, which will show on average, how far the prediction deviates from the actual gross. To calculate this, I also used cross-validation, which tests the model on many samples within the data (again, to avoid overfitting to a particular training set) and then averages the model&rsquo;s error across the samples.</p>
 
-<p> Through cross-validation and ridge regularization, the best regression model had a standard error of roughly $44.35 million dollars. At easy way of interpreting this is that we have 95% confidence in our model&rsquo;s prediction +/- $88.7 million.</p>
+<p>I found that inflation-adjusted original gross and years between releases were the two most import features in creating an accurate model. Beyond that, the only feature that improved the model significantly, was a dummy variable indicating whether the movie was of american origin or not. For the &ldquo;years between&rdquo; feature, I actually used 7 variabels of the form yearsbetween<sup>n</sup> for n up to 7, in order to model the non-linear relationship between yearsbetween and gross (that we see in the figures above).</p>
 
-<p>In the future, I hope to augment this model by incorporating more features that indicate the cultural presence of the original movie. The first place I would look is IMDb&rsquo;s connections section, which talks about how many times a movie is referenced/mentioned/parodied in popular culture.</p>
+<p>Through cross-validation and ridge regularization, the best regression model had a standard error of roughly $44.5 million dollars. At easy way of interpreting this is that we have 95% confidence in our model&rsquo;s prediction +/- $89 million.</p>
+
+<p>Ultimately, the current  model would not prove particularly practical for managing box-office risk. Still, the exploratory analysis provides useful insight into the kinds of movies that end up being remakes. In the future, I hope to augment this model by incorporating more features that indicate the cultural presence of the original movie. The first place I would look is IMDb&rsquo;s connections section, which talks about how many times a movie is referenced/mentioned/parodied in popular culture.</p>
 ]]></content>
   </entry>
   
