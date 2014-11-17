@@ -4,7 +4,7 @@
   <title><![CDATA[Category: metis | Praveen Rathinavelu]]></title>
   <link href="http://prathinavelu.github.io/blog/categories/metis/atom.xml" rel="self"/>
   <link href="http://prathinavelu.github.io/"/>
-  <updated>2014-11-17T14:49:35-05:00</updated>
+  <updated>2014-11-17T14:54:53-05:00</updated>
   <id>http://prathinavelu.github.io/</id>
   <author>
     <name><![CDATA[Praveen Rathinavelu]]></name>
@@ -159,8 +159,8 @@ var svg = d3.select(".entry-content").append("svg")
 var txt = "Cluster 0"
 ;
 queue()
- .defer(d3.json, "/assets/fletcher/us.json")
- .defer(d3.csv, "/assets/fletcher/Cluster0States.csv", function(d) {rateById.set(d.id, d.rate_adjusted); })
+ .defer(d3.json, "/assets/us.json")
+ .defer(d3.csv, "/assets/Cluster0States.csv", function(d) {rateById.set(d.id, d.rate_adjusted); })
  .await(ready);
 
 svg.append("text")
@@ -174,8 +174,8 @@ d3.select("#cluster0")
       rateById.forEach(function(key) { rateById.remove(key); });
       txt = "Cluster 0";
       queue()
-        .defer(d3.json, "/assets/fletcher/us.json")
-        .defer(d3.csv, "/assets/fletcher/Cluster0States.csv", function(d) {rateById.set(d.id, d.rate_adjusted); })
+        .defer(d3.json, "/assets/us.json")
+        .defer(d3.csv, "/assets/Cluster0States.csv", function(d) {rateById.set(d.id, d.rate_adjusted); })
         .await(ready);
     })
 
@@ -184,8 +184,8 @@ d3.select("#cluster1")
         rateById.forEach(function(key) { rateById.remove(key); });
         txt = "Cluster 1";
         queue()
-        .defer(d3.json, "/assets/fletcher/us.json")
-        .defer(d3.csv, "/assets/fletcher/Cluster1States.csv", function(d) {rateById.set(d.id, d.rate_adjusted); })
+        .defer(d3.json, "/assets/us.json")
+        .defer(d3.csv, "/assets/Cluster1States.csv", function(d) {rateById.set(d.id, d.rate_adjusted); })
         .await(ready);
     })
     
@@ -194,8 +194,8 @@ d3.select("#cluster2")
         rateById.forEach(function(key) { rateById.remove(key); });
         txt = "Cluster 2"
     queue()
-        .defer(d3.json, "/assets/fletcher/us.json")
-        .defer(d3.csv, "/assets/fletcher/Cluster2States.csv", function(d) {rateById.set(d.id, d.rate_adjusted); })
+        .defer(d3.json, "/assets/us.json")
+        .defer(d3.csv, "/assets/Cluster2States.csv", function(d) {rateById.set(d.id, d.rate_adjusted); })
         .await(ready);
     })
     
@@ -204,8 +204,8 @@ d3.select("#cluster3")
         rateById.forEach(function(key) { rateById.remove(key); });      
         txt = "Cluster 3";
     queue()
-        .defer(d3.json, "/assets/fletcher/us.json")
-        .defer(d3.csv, "/assets/fletcher/Cluster3States.csv", function(d) {rateById.set(d.id, d.rate_adjusted); })
+        .defer(d3.json, "/assets/us.json")
+        .defer(d3.csv, "/assets/Cluster3States.csv", function(d) {rateById.set(d.id, d.rate_adjusted); })
         .await(ready);
     })
     
