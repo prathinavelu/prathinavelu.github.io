@@ -4,7 +4,7 @@
   <title><![CDATA[Category: movies | Praveen Rathinavelu]]></title>
   <link href="http://prathinavelu.github.io/blog/categories/movies/atom.xml" rel="self"/>
   <link href="http://prathinavelu.github.io/"/>
-  <updated>2014-11-17T08:05:35-05:00</updated>
+  <updated>2014-11-17T08:06:33-05:00</updated>
   <id>http://prathinavelu.github.io/</id>
   <author>
     <name><![CDATA[Praveen Rathinavelu]]></name>
@@ -69,6 +69,8 @@
 <p>A more useful measure of accuracy is the standard error of the model, which will show on average, how far the prediction deviates from the actual gross. To calculate this, I also used cross-validation, which tests the model on many samples within the data (again, to avoid overfitting to a particular training set) and then averages the model&rsquo;s error across the samples.</p>
 
 <p>I found that inflation-adjusted original gross and years between releases were the two most import features in creating an accurate model. Beyond that, the only feature that improved the model significantly, was a dummy variable indicating whether the movie was of american origin or not. For the &ldquo;years between&rdquo; feature, I actually used 7 variabels of the form yearsbetween<sup>n</sup> for n up to 7, in order to model the non-linear relationship between yearsbetween and gross (that we see in the figures above).</p>
+
+<h1>Conclusion</h1>
 
 <p>Through cross-validation and ridge regularization, the best regression model had a standard error of roughly $44.5 million dollars. At easy way of interpreting this is that we have 95% confidence in our model&rsquo;s prediction +/- $89 million.</p>
 
