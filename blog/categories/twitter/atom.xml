@@ -4,7 +4,7 @@
   <title><![CDATA[Category: twitter | Praveen Rathinavelu]]></title>
   <link href="http://prathinavelu.github.io/blog/categories/twitter/atom.xml" rel="self"/>
   <link href="http://prathinavelu.github.io/"/>
-  <updated>2014-11-17T17:39:20-05:00</updated>
+  <updated>2014-11-17T17:59:01-05:00</updated>
   <id>http://prathinavelu.github.io/</id>
   <author>
     <name><![CDATA[Praveen Rathinavelu]]></name>
@@ -304,7 +304,7 @@ var txt = "Cluster 0"
 ;
 queue()
  .defer(d3.json, "/assets/us.json")
- .defer(d3.csv, "/assets/Cluster0States.csv", function(d) {rateById.set(d.id, d.rate_adjusted); })
+ .defer(d3.csv, "/assets/cluster0states.csv", function(d) {rateById.set(d.id, d.rate_adjusted); })
  .await(ready);
 
 svg.append("text")
@@ -319,7 +319,7 @@ d3.select("#cluster0")
       txt = "Cluster 0";
       queue()
         .defer(d3.json, "/assets/us.json")
-        .defer(d3.csv, "/assets/Cluster0States.csv", function(d) {rateById.set(d.id, d.rate_adjusted); })
+        .defer(d3.csv, "/assets/cluster0states.csv", function(d) {rateById.set(d.id, d.rate_adjusted); })
         .await(ready);
     })
 
@@ -329,7 +329,7 @@ d3.select("#cluster1")
         txt = "Cluster 1";
         queue()
         .defer(d3.json, "/assets/us.json")
-        .defer(d3.csv, "/assets/Cluster1States.csv", function(d) {rateById.set(d.id, d.rate_adjusted); })
+        .defer(d3.csv, "/assets/cluster1states.csv", function(d) {rateById.set(d.id, d.rate_adjusted); })
         .await(ready);
     })
     
@@ -339,7 +339,7 @@ d3.select("#cluster2")
         txt = "Cluster 2"
     queue()
         .defer(d3.json, "/assets/us.json")
-        .defer(d3.csv, "/assets/Cluster2States.csv", function(d) {rateById.set(d.id, d.rate_adjusted); })
+        .defer(d3.csv, "/assets/cluster2states.csv", function(d) {rateById.set(d.id, d.rate_adjusted); })
         .await(ready);
     })
     
@@ -349,7 +349,7 @@ d3.select("#cluster3")
         txt = "Cluster 3";
     queue()
         .defer(d3.json, "/assets/us.json")
-        .defer(d3.csv, "/assets/Cluster3States.csv", function(d) {rateById.set(d.id, d.rate_adjusted); })
+        .defer(d3.csv, "/assets/cluster3states.csv", function(d) {rateById.set(d.id, d.rate_adjusted); })
         .await(ready);
     })
     
