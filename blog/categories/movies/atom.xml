@@ -4,7 +4,7 @@
   <title><![CDATA[Category: movies | Praveen Rathinavelu]]></title>
   <link href="http://prathinavelu.github.io/blog/categories/movies/atom.xml" rel="self"/>
   <link href="http://prathinavelu.github.io/"/>
-  <updated>2014-11-17T07:57:21-05:00</updated>
+  <updated>2014-11-17T08:01:06-05:00</updated>
   <id>http://prathinavelu.github.io/</id>
   <author>
     <name><![CDATA[Praveen Rathinavelu]]></name>
@@ -64,23 +64,7 @@
 
 <h1>Building a Model</h1>
 
-<p>After the initial exploratory analysis, I wanted to see what kind of linear regression model we could build with the features at hand.</p>
-
-<h1>* The gross of the original (I tested models with inflation-adjusted and nominal values for gross) as well as log_original_gross</h1>
-
-<h1>* The region of origin of the original (with dummy variables for US, Asian, and European)</h1>
-
-<h1>* A dummy variable indicating a color change between the original and remake.</h1>
-
-<h1>* The year of the original release</h1>
-
-<h1>* The runtime of the remake</h1>
-
-<h1>* The month of the remake</h1>
-
-<h1>* The years between releases (I actually tested 7 variables of the form yearsbetween<sup>n</sup>, for n up to 7, in order to model the non-linear relationship between yearsbetw</h1>
-
-<p>Using the scikit-learn python package, I iterated through each combination of features and ran a linear regression model. The models used ridge regularization in order to add a penalty for too many variables, which would create overfitting. I initially looked at the r-squared for models with each combination of features for some basic intuition, however, what is considered a good r-squared varies depending on the type of data we are trying to model.</p>
+<p>After the initial exploratory analysis, I wanted to see what kind of linear regression model we could build with the features at hand. Using the scikit-learn python package, I iterated through each combination of features and ran a linear regression model. The models used ridge regularization in order to add a penalty for too many variables, which would create overfitting. I initially looked at the r-squared for models with each combination of features for some basic intuition, however, what is considered a good r-squared varies depending on the type of data we are trying to model.</p>
 
 <p>A more useful measure of accuracy is the standard error of the model, which will show on average, how far the prediction deviates from the actual gross. To calculate this, I also used cross-validation, which tests the model on many samples within the data (again, to avoid overfitting to a particular training set) and then averages the model&rsquo;s error across the samples.</p>
 
