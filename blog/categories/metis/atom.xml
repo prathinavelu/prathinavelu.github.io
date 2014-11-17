@@ -4,7 +4,7 @@
   <title><![CDATA[Category: metis | Praveen Rathinavelu]]></title>
   <link href="http://prathinavelu.github.io/blog/categories/metis/atom.xml" rel="self"/>
   <link href="http://prathinavelu.github.io/"/>
-  <updated>2014-11-17T14:54:53-05:00</updated>
+  <updated>2014-11-17T15:00:55-05:00</updated>
   <id>http://prathinavelu.github.io/</id>
   <author>
     <name><![CDATA[Praveen Rathinavelu]]></name>
@@ -86,6 +86,8 @@
 <p>This d3 visualization shows how the clusters are distributed geographically:</p>
 
 <div>
+<!DOCTYPE html>
+<meta charset="utf-8">
 <style>
 
 .counties {
@@ -109,10 +111,10 @@
 .q8-9 { fill:rgb(8,48,107); }
 
 </style>
-</div>
 
 
-<p><body></p>
+
+<body>
 
 <div id="buttons">
 <button id="cluster0">Cluster 0</button>
@@ -122,17 +124,9 @@
 </div>
 
 
-
-
-<script src=/assets/d3.js></script>
-
-
-<script src=/assets/queue.v1.min.js></script>
-
-
-<script src=/assets/topojson.v1.min.js></script>
-
-
+<script src="http://prathinavelu.github.io/assets/d3.js"></script>
+<script src="http://prathinavelu.github.io/assets/queue.v1.min.js"></script>
+<script src="http://prathinavelu.github.io/assets/topojson.v1.min.js"></script>
 <script>
 
 var width = 960,
@@ -237,6 +231,7 @@ function ready(error, us) {
 d3.select(self.frameElement).style("height", height + "px");
 
 </script>
+</div>
 
 
 <p>The states are shaded by what percentage of each cluster is in that state. They are also scaled by the overall percentage of congressmen from that state (so that we don&rsquo;t have states with lots of members of congress over-represented in the maps, such as California).</p>
