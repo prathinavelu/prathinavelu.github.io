@@ -4,7 +4,7 @@
   <title><![CDATA[Praveen Rathinavelu]]></title>
   <link href="http://prathinavelu.github.io/atom.xml" rel="self"/>
   <link href="http://prathinavelu.github.io/"/>
-  <updated>2014-11-17T15:00:55-05:00</updated>
+  <updated>2014-11-17T17:22:07-05:00</updated>
   <id>http://prathinavelu.github.io/</id>
   <author>
     <name><![CDATA[Praveen Rathinavelu]]></name>
@@ -52,20 +52,20 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;"><strong>Cluster 0 (Republican)</strong>    </td>
-<td style="text-align:center;"> obamacare bills energy budget tax rep va border video </td>
+<td style="text-align:left;"><strong>Cluster 0 (Republican)</strong>                 </td>
+<td style="text-align:center;"> obamacare bills energy budget tax rep va border video        </td>
 </tr>
 <tr>
-<td style="text-align:left;"><strong>Cluster 1 (General)</strong>    </td>
+<td style="text-align:left;"><strong>Cluster 1 (General)</strong>                    </td>
 <td style="text-align:center;"> va rep county bipartisan town statement staff committee hall </td>
 </tr>
 <tr>
-<td style="text-align:left;"><strong>Cluster 2 (Current Events/Reactionary)</strong>    </td>
-<td style="text-align:center;"> isis ebola tune border war threat talking pres ll </td>
+<td style="text-align:left;"><strong>Cluster 2 (Current Events/Reactionary)</strong> </td>
+<td style="text-align:center;"> isis ebola tune border war threat talking pres ll            </td>
 </tr>
 <tr>
-<td style="text-align:left;"><strong>Cluster 3 (Democrat)</strong>    </td>
-<td style="text-align:center;"> gop pass workers violence agree rights pay education access </td>
+<td style="text-align:left;"><strong>Cluster 3 (Democrat)</strong>                   </td>
+<td style="text-align:center;"> gop pass workers violence agree rights pay education access  </td>
 </tr>
 </tbody>
 </table>
@@ -77,7 +77,157 @@
 
 <p>Another way of looking at how we divide the clusters is by the profile of its members. For each group, I looked at the 5 members closest to its center (the most represenative of the average member within each group):</p>
 
-<p><img src="http://prathinavelu.github.io/images/fletcher/fletcher2.png"></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Cluster 0       </th>
+<th>   </th>
+<th>    </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">Robert Aderholt </td>
+<td> R </td>
+<td> AL </td>
+</tr>
+<tr>
+<td style="text-align:left;">Mike Pompeo     </td>
+<td> R </td>
+<td> KS </td>
+</tr>
+<tr>
+<td style="text-align:left;">Diane Black     </td>
+<td> R </td>
+<td> TN </td>
+</tr>
+<tr>
+<td style="text-align:left;">Kenny Marchant  </td>
+<td> R </td>
+<td> TX </td>
+</tr>
+<tr>
+<td style="text-align:left;">Phil Gingrey    </td>
+<td> R </td>
+<td> GA </td>
+</tr>
+</tbody>
+</table>
+
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Cluster 1       </th>
+<th>   </th>
+<th>    </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">Ted Yoho        </td>
+<td> R </td>
+<td> FL </td>
+</tr>
+<tr>
+<td style="text-align:left;">Gregg Harper    </td>
+<td> R </td>
+<td> MS </td>
+</tr>
+<tr>
+<td style="text-align:left;">Kurt Schrader   </td>
+<td> D </td>
+<td> OR </td>
+</tr>
+<tr>
+<td style="text-align:left;">Cory Gardner    </td>
+<td> R </td>
+<td> CO </td>
+</tr>
+<tr>
+<td style="text-align:left;">Steve Pearce    </td>
+<td> R </td>
+<td> NM </td>
+</tr>
+</tbody>
+</table>
+
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Cluster 2       </th>
+<th>   </th>
+<th>    </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">Adam Kinzinger  </td>
+<td> R </td>
+<td> IL </td>
+</tr>
+<tr>
+<td style="text-align:left;">Daniel Coats    </td>
+<td> R </td>
+<td> IN </td>
+</tr>
+<tr>
+<td style="text-align:left;">Ed Royce        </td>
+<td> R </td>
+<td> CA </td>
+</tr>
+<tr>
+<td style="text-align:left;">Mark Meadows    </td>
+<td> R </td>
+<td> NC </td>
+</tr>
+<tr>
+<td style="text-align:left;">Rand Paul       </td>
+<td> R </td>
+<td> KY </td>
+</tr>
+</tbody>
+</table>
+
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">Cluster 3       </th>
+<th>   </th>
+<th>    </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">Zoe Lofgren     </td>
+<td> D </td>
+<td> CA </td>
+</tr>
+<tr>
+<td style="text-align:left;">Nancy Pelosi    </td>
+<td> D </td>
+<td> CA </td>
+</tr>
+<tr>
+<td style="text-align:left;">Alan Lowenthal  </td>
+<td> D </td>
+<td> CA </td>
+</tr>
+<tr>
+<td style="text-align:left;">Gwen Moore      </td>
+<td> D </td>
+<td> WI </td>
+</tr>
+<tr>
+<td style="text-align:left;">Doris Matsui    </td>
+<td> D </td>
+<td> CA </td>
+</tr>
+</tbody>
+</table>
+
 
 <p>The most interesting thing to note here is that in the democrat cluster, four out of the five members closest to the center are women (as well as four out of the five being from California). And despite being mixed overall, the members closest to the center of cluster 2 are all republican. I did informally use <a href="https://www.govtrack.us/congress/members">govtrack.us</a> to look at where each of these members are situated in terms of influence within their parties. At this time, there aren&rsquo;t any clear patterns between their place within party leadership and how close to they are to the center of the cluster. I would like to look at this more rigorously in the future.</p>
 
