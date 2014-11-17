@@ -130,7 +130,7 @@
 
 <h1>Building a Model</h1>
 
-<p>After the initial exploratory analysis, I wanted to see what kind of linear regression model we could build with the features at hand. Using the scikit-learn python package, I iterated through each combination of features and ran a linear regression model. The models used ridge regularization in order to add a penalty for too many variables, which would create overfitting. I initially looked at the r-squared for models with each combination of features for some basic intuition, however, what is considered a good r-squared varies depending on the type of data we are trying to model.</p>
+<p>Using the scikit-learn python package, I iterated through each combination of features and ran a linear regression model. The models used ridge regularization in order to add a penalty for too many variables, which would create overfitting. I initially looked at the r-squared for models with each combination of features for some basic intuition, however, what is considered a good r-squared varies depending on the type of data we are trying to model.</p>
 
 <p>A more useful measure of accuracy is the standard error of the model, which will show on average, how far the prediction deviates from the actual gross. To calculate this, I also used cross-validation, which tests the model on many samples within the data (again, to avoid overfitting to a particular training set) and then averages the model&rsquo;s error across the samples.</p>
 
