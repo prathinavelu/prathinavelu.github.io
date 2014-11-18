@@ -1,0 +1,432 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Classifying Behavior and Health Risk - Praveen Rathinavelu</title>
+	<meta name="author" content="Praveen Rathinavelu">
+
+	
+	<meta name="description" content="At metis, we initially used a dataset
+that had clinical information on patients, to explore supervised learning models that could
+classify a patient &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Praveen Rathinavelu" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	
+
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">Praveen Rathinavelu</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">Blog</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+	<li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">Blog</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+	<li><a href="/about">About</a></li>
+</ul>
+
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="https://www.google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:prathinavelu.github.io">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		
+		<a class="twitter" href="http://twitter.com/prathinavelu" title="Twitter">Twitter</a>
+		
+		
+		<a class="github" href="https://github.com/prathinavelu" title="GitHub">GitHub</a>
+		
+    
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+    
+	</div>
+	<form class="search" action="https://www.google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:prathinavelu.github.io">
+	</form>
+</nav>
+
+</header>
+	
+		
+	
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">Classifying Behavior and Health Risk</h2>
+	<div class="entry-content"><p>At metis, we initially used a <a href="https://archive.ics.uci.edu/ml/datasets/Heart+Disease">dataset</a>
+that had clinical information on patients, to explore supervised learning models that could
+classify a patient as being at risk for heart disease. Somewhat predictably&ndash;with hospital-provided
+data on heart rate, blood sugar, and various ekg readings&ndash;these models did pretty well.</p>
+
+<p>However, I was more interested in finding general behavioral and lifestyle features
+that could contribute to a similar sort of classifier. I ended up looking at both sleep and
+occupation in relation to heart health risk.</p>
+
+<!-- more -->
+
+
+<h1>Data</h1>
+
+<p>I used health survey <a href="https://www.ihis.us">data</a> that was collected originally for the National
+Health Interview Survey. Survey data comes with its own set of inconsistencies and biases, particularly
+in building an accurate machine learning model, as we&rsquo;ll see below.</p>
+
+<h1>Sleep</h1>
+
+<p>I started with the initial assumption that sleep would most likely have a positive linear
+relationship with most health risk factors. However, once I charted sleep in relation to various
+health factors, I found that people who deviate from normal sleep on either
+extreme tend to have poorer health, by various measures:</p>
+
+<p><em>hover mouse over line to highlight</em></p>
+
+<div>
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+#body {
+#  font: 11px sans-serif;
+#}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2.5px;
+}
+
+.legend rect {
+  fill:white;
+  stroke:black;
+  opacity:1;
+}
+
+
+</style>
+<body>
+<script src="/assets/d3.js"></script>
+<script src="/assets/d3.legend.js"></script>
+<script>
+
+var margin = {top: 30, right: 150, bottom: 70, left: 75},
+    width = 1000 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+
+var x = d3.scale.linear()
+    .range([0, width])
+    .domain([3.7,11]);
+
+var y = d3.scale.linear()
+    .range([height, 0]);
+
+var norm = d3.scale.linear().range([0,1])
+
+var color = d3.scale.category20();
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left");
+
+
+var line = d3.svg.line()
+    .interpolate("basis")
+    .x(function(d) { return x(d.hrs); })
+    .y(function(d) { return y(d.val); });
+
+var svg = d3.select(".entry-content").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+    
+
+d3.csv("/assets/bysleepdata.csv", function(error, data) {
+  //console.log(data)
+  color.domain(d3.keys(data[0]).filter(function(key) { return key !== "hrsleep"; }));
+
+  data.forEach(function(d) {
+    d.hrsleep = d.hrsleep;
+  });
+  
+  var features = color.domain().map(function(name) {
+    obj = {
+      name: name,
+      values: data.map(function(d) {
+        return +d[name]
+        })
+    };
+    norm.domain([d3.min(obj.values),d3.max(obj.values)])
+    obj.normvals = data.map(function(d) {return {hrs: d.hrsleep, val: norm(d[name])} });
+    return obj;
+  });
+  
+    console.log("features=", features)
+
+
+
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis)
+      .append("text")
+      .style("font-size", "11px")
+      .attr("dy", "3em")
+      .attr("x", 250)
+      .text("Number of Hours of Sleep Per Night");
+      
+      
+
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+      .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 20)
+      .attr("dy", ".75em")
+      .style("text-anchor", "end")
+      //.text("% of People");
+      
+ 
+
+  var feature = svg.selectAll(".feature")
+      .data(features)
+      .enter().append("g")
+      .attr("class", "feature");
+      //.attr("class", function(d) {return "feature " + d.name});
+
+      
+  feature.append("path")
+      .attr("class", "line")
+      .attr("d", function(d) { console.log('data',d);return line(d.normvals); })
+      .attr("data-legend",function(d) { return d.name})
+      .on("mouseover", function(d){
+            d3.select( this )
+            .transition()
+            .style( "opacity", 100)
+            .style("stroke-width","6px");
+            //var getname = d.name;
+            var selected = d3.selectAll(".legend").selectAll('.text');
+            console.log('nme',selected);
+        } )
+      .on( "mouseout", function() {
+          d3.select( this )
+            .transition()
+            .style( "opacity", .3 )
+            .style("stroke-width","2.5px");
+              
+        }  )    
+      .style("stroke", function(d) { return color(d.name); })
+      .style("opacity", .3);
+    
+    
+  svg.append("g")
+      .attr("class","legend")
+      .attr("transform","translate(695,10)")
+      .style("font-size","10px")
+      //.style("opacity", .4)
+      .call(d3.legend)
+
+      
+      
+      
+});
+
+</script>
+</div>
+
+
+<p><em>Please see appendix for the small multiples version of the above chart, which will show the appropriate axis for each line.</em>
+<em>The chart shows the proportion of people who said &ldquo;yes&rdquo; to questions like, &ldquo;Have you ever spoken
+to a doctor about your diet&rdquo; and the actual value for features like BMI.</em></p>
+
+<p>We see, for example, that the proportion of people who have ever head a heart attack, or smoked 100 cigarettes
+in their life, dips in the healthy sleep range. Similarly, the proportion of people who frequently
+exercised peaks around the healthy sleep range.</p>
+
+<p>I then used a logistic regression classifier to predict whether a person sleeps
+between 6 and 9 hours per night. The model
+had the following performance:</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:center;">Healthy Sleeper </th>
+<th style="text-align:center;"> Precision </th>
+<th style="text-align:center;"> Recall</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">No</td>
+<td style="text-align:center;">0.51</td>
+<td style="text-align:center;">0.43</td>
+</tr>
+<tr>
+<td style="text-align:center;">Yes</td>
+<td style="text-align:center;">0.48</td>
+<td style="text-align:center;">0.56</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>This means that 51% of the people classified as unhealthy sleepers actually are, and that we
+correctly classified 43% of unhealthy sleepers.</p>
+
+<h1>Occupation</h1>
+
+<p>Similar to one’s sleeping behavior, occupation has notable relationship with heart health.
+Specifically, individuals working in Construction and Extraction have the highest heart attack
+rates and individuals in Computer and Mathematical fields have the lowest heart attack rates.</p>
+
+<p><img src="/images/mcnulty/mcnulty2.png"></p>
+
+<h1>Classifier Performance</h1>
+
+<p>I tested logistic regression, SVM, and Naive Bayes classifiers using our survey features&ndash;including age, sex, sleep, BMI, and occupation&ndash;to
+predict heart health risk. However, we noticed inconsistencies in the survey data that prevented us from
+designing an accurate model. An example was that respondents who said that they have had a heart attack before
+did not always say yes to &ldquo;have you ever had a heart condition?&rdquo; This prevented us from having a consistent
+method of labeling individuals as having heart health risk, and therefore building a working model.</p>
+
+<h1>Conclusion</h1>
+
+<p>Our exploratory analysis showed that sleep and occupation could contribute to a heart disease classifier,
+as long as it was in combination with other health features, particularly clinically-derived data.</p>
+
+<h1>Appendix</h1>
+
+<p><img src="/images/mcnulty/mcnulty1.png"></p>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-10-20T18:13:06-04:00" pubdate data-updated="true"></time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/classifiers/'>classifiers</a>, <a class='category' href='/blog/categories/d3/'>d3</a>, <a class='category' href='/blog/categories/heart-disease/'>heart disease</a>, <a class='category' href='/blog/categories/logistic-regression/'>logistic regression</a>, <a class='category' href='/blog/categories/sql/'>sql</a>, <a class='category' href='/blog/categories/supervised-learning/'>supervised learning</a>
+
+
+</div>
+	
+</div>
+</article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+		
+		
+		<a class="addthis_button_tweet"></a>
+		
+		
+		
+	</div>
+	
+</div>
+
+
+
+<section id="comment">
+    <h2 class="title">Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+	<footer id="footer" class="inner">Copyright &copy; 2014
+
+    Praveen Rathinavelu
+
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'prathinavelu';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://prathinavelu.github.io/blog/2014/10/20/classifying-individuals-by-heart-health/';
+        var disqus_url = 'http://prathinavelu.github.io/blog/2014/10/20/classifying-individuals-by-heart-health/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//go.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+</body>
+</html>
