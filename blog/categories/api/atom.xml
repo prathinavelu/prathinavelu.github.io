@@ -4,7 +4,7 @@
   <title><![CDATA[Category: api | Praveen Rathinavelu]]></title>
   <link href="http://prathinavelu.github.io/blog/categories/api/atom.xml" rel="self"/>
   <link href="http://prathinavelu.github.io/"/>
-  <updated>2014-11-18T12:02:09-05:00</updated>
+  <updated>2014-11-18T14:08:28-05:00</updated>
   <id>http://prathinavelu.github.io/</id>
   <author>
     <name><![CDATA[Praveen Rathinavelu]]></name>
@@ -75,7 +75,7 @@
 
 <h1>Analyzing the Members</h1>
 
-<p>Another way of looking at how we divide the clusters is by the profile of its members. For each group, I looked at the 5 members closest to its center (the most represenative of the average member within each group):</p>
+<p>Another way of looking at how we divide the clusters is by the profile of its members. For each group, I looked at the 5 members closest to its center (the most representative of the average member within each group):</p>
 
 <table>
 <thead>
