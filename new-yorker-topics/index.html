@@ -111,14 +111,14 @@ text {
 <script src="/assets/queue.v1.min.js"></script>
 <script>
 
-
+<div>
 var diameter = 775,
     format = d3.format(",d"),
     color = d3.scale.category10();
 
 var bubble = d3.layout.pack()
     .sort(null)
-    .size([.9*diameter, .9*diameter])
+    .size([.8*diameter, .8*diameter])
     .padding(1.5);
 
 var svg = d3.select("body").append("svg")
@@ -233,7 +233,7 @@ d3.select(self.frameElement).style("height", diameter + "px");
 refreshGraph()
 show_keywords()
 
-
+</div>
 </script>
 </div>
 
